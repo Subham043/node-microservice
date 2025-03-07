@@ -19,4 +19,16 @@ export default fp<FastifyHttpProxyOptions>(async (fastify) => {
     rewritePrefix: '/api/account', // optional
     http2: false, // optional
   });
+  fastify.register(proxy, {
+    upstream: 'http://localhost:3002',
+    prefix: '/api/product', // optional
+    rewritePrefix: '/api/product', // optional
+    http2: false, // optional
+  });
+  fastify.register(proxy, {
+    upstream: 'http://localhost:3002',
+    prefix: '/api/category', // optional
+    rewritePrefix: '/api/category', // optional
+    http2: false, // optional
+  });
 })

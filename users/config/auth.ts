@@ -6,7 +6,9 @@ import { JwtGuardUser, BaseJwtContent } from '@maximemrf/adonisjs-jwt/types'
 import User from '#models/user'
 
 interface JwtContent extends BaseJwtContent {
-  email: string
+  email: string;
+  name: string|null;
+  verified: boolean
 }
 
 const authConfig = defineConfig({
@@ -31,6 +33,8 @@ const authConfig = defineConfig({
         return {
           userId: user.getId(),
           email: (user.getOriginal() as User).email,
+          name: (user.getOriginal() as User).name,
+          verified: (user.getOriginal() as User).emailVerifiedAt !== null
         }
       },
     }),
